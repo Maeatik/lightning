@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сервис</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="header">
+        <h1>Мой сервис</h1>
+    </div>
+
+    <div id="menu">
+        <button class="button" onclick="showForm()">Кнопка 1</button>
+        <button class="button" onclick="showOfferList()">Кнопка 2</button>
+        <button class="button" onclick="showClickerForm()">Кнопка 3</button>
+    </div>
+
+    <div id="content" class="form">
+        <form>
+            <p>Количество накопленной электроэнергии для продажи: <strong id="amountForSale">100</strong> кВтч</p>
+            <label for="amount">Введите количество для продажи:</label>
+            <input type="number" id="amount" name="amount" placeholder="Введите количество...">
+            <br>
+            <label for="price">Введите стоимость за кВтч:</label>
+            <input type="number" id="price" name="price" placeholder="Введите стоимость за кВтч...">
+            <br>
+            <button type="submit" id="sell-button" onclick="sellEnergy(event)">Продать</button>
+        </form>
+    </div>
+
+    <div id="offer-list" class="form">
+        <h2>Список доступных предложений для покупки энергии</h2>
+        <table id="offerTable">
+            <thead>
+                <tr>
+                    <th>Количество энергии (кВтч)</th>
+                    <th>Цена за кВтч (руб.)</th>
+                    <th>Количество для покупки</th>
+                    <th>Купить</th>
+                </tr>
+            </thead>
+            <tbody id="offerTableBody">
+                <!-- Сюда будут добавляться строки с данными о продажах -->
+            </tbody>
+        </table>
+
+    </div>
+
+    <div id="clickerForm" class="form">
+        <h2>Кликер для увеличения энергии</h2>
+        <button onclick="increaseEnergy()">Кликай!</button>
+        <p>Энергия для продажи: <strong id="clickerAmount">100</strong> кВтч</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
