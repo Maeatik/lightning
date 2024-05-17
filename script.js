@@ -2,15 +2,20 @@ window.addEventListener('load', async () => {
     const message = document.getElementById('message');
     const walletButton = document.getElementById('walletButton');
 
-    const button1 = document.getElementById('button1');
+    const button1 = document.getElementById('sellFormButton');
     button1.onclick = showForm;
 
-    const button2 = document.getElementById('button2');
+    const button2 = document.getElementById('buyFormButton');
     button2.onclick = showOfferList;
 
-    const button3 = document.getElementById('button3');
+    const button3 = document.getElementById('earnFormButton');
     button3.onclick = showClickerForm;
 
+    const sellButton = document.getElementById('sellButton');
+    sellButton.onclick = sellEnergy();
+
+    const earnButton = document.getElementById('earnButton');
+    earnButton.onclick = increaseEnergy();
 
 
     if (typeof window.ethereum !== 'undefined') {
@@ -68,7 +73,7 @@ async function showForm() {
     document.getElementById('clickerForm').style.display = 'none';
 }
 
-function sellEnergy() {
+async function sellEnergy() {
     event.preventDefault();
 
     var amountInput = document.getElementById('amount');
@@ -131,7 +136,7 @@ async function showClickerForm() {
     clickerAmountElement.textContent = currentAmountForSale.toFixed(2); // Округляем до двух знаков после запятой
 }
 
-function increaseEnergy() {
+async function increaseEnergy() {
     var clickerAmount = document.getElementById('clickerAmount');
     var currentAmount = parseFloat(clickerAmount.textContent);
 
@@ -144,7 +149,7 @@ function increaseEnergy() {
     amountForSaleElement.textContent = newAmount.toFixed(2); // Округляем до двух знаков после запятой
 }
 
-function addSaleRow(amount, price) {
+async function addSaleRow(amount, price) {
     var offerTableBody = document.getElementById('offerTableBody');
 
     // Создаем новую строку (запись о продаже)
