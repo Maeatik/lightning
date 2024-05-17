@@ -205,8 +205,10 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
         const balance = await ethereum.request({ method: 'eth_getBalance', params: [address, 'latest'] });
         console.log(balance)
         const balanceInWei = BigInt(balance);
+        console.log(balanceInWei)
         const balanceInEth = parseFloat(ethereum.utils.fromWei(balanceInWei, 'ether'));
-
+        console.log(balanceInEth)
+        
         // Рассчитываем стоимость энергии
         const totalCost = energyAmount * pricePerKwh;
 
