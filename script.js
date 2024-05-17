@@ -178,13 +178,6 @@ function addSaleRow(amount, price) {
     cell4.appendChild(buyButton); // Добавляем кнопку в ячейку
 }
 
-function buyEnergy(amountForSale, quantityToBuy) {
-    // Выполнить покупку, обновить таблицу или другие действия
-    alert('Вы успешно купили ' + quantityToBuy + ' кВтч энергии.');
-    return amountForSale - quantityToBuy
-
-}
-
 async function buyEnergy(amountForSale, quantityToBuy, price) {
     try {
         // Получаем количество энергии и цену за кВтч из формы
