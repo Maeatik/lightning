@@ -110,14 +110,14 @@ function sellEnergy() {
     }
 }
 
-function showOfferList() {
+async function showOfferList() {
     // Скрываем ненужные элементы и отображаем таблицу предложений
     document.getElementById('content').style.display = 'none';
     document.getElementById('clickerForm').style.display = 'none';
     document.getElementById('offer-list').style.display = 'block';
 }
 
-function showClickerForm() {
+async function showClickerForm() {
     document.getElementById('content').style.display = 'none';
     document.getElementById('offer-list').style.display = 'none';
     document.getElementById('clickerForm').style.display = 'block';
