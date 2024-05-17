@@ -2,6 +2,17 @@ window.addEventListener('load', async () => {
     const message = document.getElementById('message');
     const walletButton = document.getElementById('walletButton');
 
+    const button1 = document.getElementById('button1');
+    button1.onclick = showForm;
+
+    const button2 = document.getElementById('button2');
+    button1.onclick = showOfferList;
+
+    const button3 = document.getElementById('button3');
+    button1.onclick = showClickerForm;
+
+
+
     if (typeof window.ethereum !== 'undefined') {
         console.log('MetaMask is installed!');
 
@@ -50,9 +61,8 @@ async function checkMetaMask() {
     }
 }
 
-
 // Функция для переключения форм
-function showForm() {
+async function showForm() {
     document.getElementById('content').style.display = 'block';
     document.getElementById('offer-list').style.display = 'none';
     document.getElementById('clickerForm').style.display = 'none';
@@ -234,3 +244,4 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
 addSaleRow(50, 5);
 addSaleRow(100, 41);
 addSaleRow(200, 3.5);
+
