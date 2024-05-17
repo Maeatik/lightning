@@ -1,16 +1,19 @@
 window.addEventListener('load', async () => {
     const message = document.getElementById('message');
+    const walletButton = document.getElementById('walletButton');
 
     if (typeof window.ethereum !== 'undefined') {
         console.log('MetaMask is installed!');
+        message.textContent = 'MetaMask is installed!';
+
         const accounts = await ethereum.request({ method: 'eth_accounts' });
 
         if (accounts.length > 0) {
             walletButton.textContent = 'Проверить кошелек';
-            walletButton.addEventListener('click', checkMetaMask);
+            walletButton.onclick = checkMetaMask;
         } else {
             walletButton.textContent = 'Подключить кошелек';
-            walletButton.addEventListener('click', connectMetaMask);
+            walletButton.onclick = connectMetaMask;
         }
     } else {
         message.textContent = 'MetaMask is not installed. Please install it to use this feature.';
@@ -23,11 +26,31 @@ async function connectMetaMask() {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         console.log('Connected account:', accounts[0]);
         alert('MetaMask connected: ' + accounts[0]);
+
+        const walletButton = document.getElementById('walletButton');
+        walletButton.textContent = 'Проверить кошелек';
+        walletButton.onclick = checkMetaMask;
     } catch (error) {
         console.error('Error connecting MetaMask', error);
         alert('Error connecting MetaMask');
     }
 }
+
+async function checkMetaMask() {
+    try {
+        const accounts = await ethereum.request({ method: 'eth_accounts' });
+        if (accounts.length > 0) {
+            console.log('Connected account:', accounts[0]);
+            alert('Connected account: ' + accounts[0]);
+        } else {
+            alert('No accounts connected');
+        }
+    } catch (error) {
+        console.error('Error checking MetaMask', error);
+        alert('Error checking MetaMask');
+    }
+}
+
 
 // Функция для переключения форм
 function showForm() {
