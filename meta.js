@@ -12,5 +12,5 @@ console.log("Баланс текущего счета:", signerBalance, " wei")
 export var Tmp = signerBalance
 
 export function getBalance() {
-    return signerBalance / 10 ** 18;
+    return Number(signerBalance) / 10 ** 18;
 }
