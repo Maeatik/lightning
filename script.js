@@ -4,7 +4,6 @@ window.addEventListener('load', async () => {
 
     if (typeof window.ethereum !== 'undefined') {
         console.log('MetaMask is installed!');
-        message.textContent = 'MetaMask is installed!';
 
         const accounts = await ethereum.request({ method: 'eth_accounts' });
 
