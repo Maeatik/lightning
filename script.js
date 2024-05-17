@@ -217,7 +217,9 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
         // Рассчитываем стоимость энергии
         const totalCost = energyAmount * pricePerKwh;
         const costInEth = convertRubToEth(totalCost)
-        console.log(costInEth)
+        console.log(costInEth.value)
+        console.log(costInEth.result)
+        console.log(costInEth.PromiseResult)
         console.log(costInEth * 1e18)
         // Проверяем, достаточно ли у пользователя средств на счету
         if (balanceInEth < costInEth) {
