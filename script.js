@@ -106,10 +106,8 @@ async function sellEnergy() {
         // Очищаем поля ввода после продажи (это просто пример)
         amountInput.value = '';
         priceInput.value = '';
-        return false;
     } else {
         alert("Недостаточно энергии для продажи.");
-        return false;
     }
 }
 
