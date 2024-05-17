@@ -1,4 +1,4 @@
-import { ethers } from "./ethers.min.js"
+import { ethers } from "ethers"
 
 window.addEventListener('load', async () => {
     const message = document.getElementById('message');
