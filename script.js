@@ -1,5 +1,3 @@
-import { ethers } from "ethers"
-
 window.addEventListener('load', async () => {
     const message = document.getElementById('message');
     const walletButton = document.getElementById('walletButton');
@@ -21,16 +19,6 @@ window.addEventListener('load', async () => {
         alert('MetaMask is not installed. Please install it to use this feature.');
     }
 });
-
-
-const provider = new ethers.BrowserProvider(window.ethereum)
-const signer = await provider.getSigner()
-const signerAddress = await signer.getAddress()
-console.log("Текущий счет:", signerAddress)
-
-const signerBalance = await
-    provider.getBalance(signerAddress)
-console.log("Баланс текущего счета:", signerBalance, " wei")
 
 async function connectMetaMask() {
     try {
