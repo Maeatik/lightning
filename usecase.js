@@ -25,5 +25,5 @@ convertRubToEth(rubAmount)
 
 export function weiToEth(weiAmount) {
     // 1 ETH = 10^18 wei
-    return weiAmount / 10 ** 18;
+    return weiAmount
 }    

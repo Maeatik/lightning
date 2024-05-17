@@ -210,7 +210,7 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
             return;
         }
 
-        const balanceInEth = weiToEth(getBalance())
+        const balanceInEth = getBalance()
         console.log(balanceInEth)
 
 
@@ -228,7 +228,7 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
         // Создаем контракт и отправляем его в Remix (вашу IDE для разработки контрактов)
         // Здесь нужно будет вставить код для создания контракта и отправки его в Remix
 
-        alert(`Вы успешно купили ${energyAmount} кВтч энергии за ${totalCost} ETH.`);
+        alert(`Вы успешно купили ${energyAmount} кВтч энергии за ${totalCost} РУБ(${costInEth} ETH).`);
 
         return amountForSale - energyAmount
     } catch (error) {
