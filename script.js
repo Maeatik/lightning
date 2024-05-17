@@ -16,30 +16,26 @@ sellButton.onclick = sellEnergy;
 const earnButton = document.getElementById('earnButton');
 earnButton.onclick = increaseEnergy;
 
-window.addEventListener('load', async () => {
-    const message = document.getElementById('message');
-    const walletButton = document.getElementById('walletButton');
+const message = document.getElementById('message');
+const walletButton = document.getElementById('walletButton');
 
+if (typeof window.ethereum !== 'undefined') {
+    console.log('MetaMask is installed!');
 
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
 
-
-    if (typeof window.ethereum !== 'undefined') {
-        console.log('MetaMask is installed!');
-
-        const accounts = await ethereum.request({ method: 'eth_accounts' });
-
-        if (accounts.length > 0) {
-            walletButton.textContent = 'Проверить кошелек';
-            walletButton.onclick = checkMetaMask;
-        } else {
-            walletButton.textContent = 'Подключить кошелек';
-            walletButton.onclick = connectMetaMask;
-        }
+    if (accounts.length > 0) {
+        walletButton.textContent = 'Проверить кошелек';
+        walletButton.onclick = checkMetaMask;
     } else {
-        message.textContent = 'MetaMask is not installed. Please install it to use this feature.';
-        alert('MetaMask is not installed. Please install it to use this feature.');
+        walletButton.textContent = 'Подключить кошелек';
+        walletButton.onclick = connectMetaMask;
     }
-});
+} else {
+    message.textContent = 'MetaMask is not installed. Please install it to use this feature.';
+    alert('MetaMask is not installed. Please install it to use this feature.');
+}
+
 
 async function connectMetaMask() {
     try {
