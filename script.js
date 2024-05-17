@@ -1,5 +1,5 @@
-import { Tmp } from "./meta.js"
-console.log(Tmp)
+import { getBalance } from "./meta.js"
+import { convertRubToEth } from "./usecase.js"
 
 const button1 = document.getElementById('sellFormButton');
 button1.onclick = showForm;
@@ -213,8 +213,11 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
         const balanceInEth = getBalance()
         console.log(balanceInEth)
 
+
         // Рассчитываем стоимость энергии
         const totalCost = energyAmount * pricePerKwh;
+        costInEth = convertRubToEth(totalCost)
+        console.log(costInEth)
 
         // Проверяем, достаточно ли у пользователя средств на счету
         if (balanceInEth < totalCost) {
