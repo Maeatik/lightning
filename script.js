@@ -1,5 +1,4 @@
 import { ethers } from "./ethers.min.js"
-import Web3 from 'web3';
 
 window.addEventListener('load', async () => {
     const message = document.getElementById('message');
