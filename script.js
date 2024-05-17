@@ -1,5 +1,3 @@
-import {getBalance} from "./meta.js"
-
 window.addEventListener('load', async () => {
     const message = document.getElementById('message');
     const walletButton = document.getElementById('walletButton');
@@ -37,6 +35,8 @@ window.addEventListener('load', async () => {
         alert('MetaMask is not installed. Please install it to use this feature.');
     }
 });
+
+import { getBalance } from "./meta.js"
 
 async function connectMetaMask() {
     try {
