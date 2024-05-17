@@ -31,15 +31,19 @@ body {
 #menu {
     position: fixed;
     top: 100px;
-    /* Начинается с отступом под заголовком (100px от верхнего края) */
     left: 0;
     width: 100%;
     background-color: #cce5ff;
-    /* Светло-синий цвет для фона */
     padding: 10px;
     z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.left-buttons {
+    display: flex;
+}
 
 .button {
     display: inline-block;

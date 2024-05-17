@@ -1,10 +1,17 @@
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
     const message = document.getElementById('message');
 
     if (typeof window.ethereum !== 'undefined') {
         console.log('MetaMask is installed!');
-        message.textContent = 'MetaMask is installed!';
-        document.getElementById('connectButton').addEventListener('click', connectMetaMask);
+        const accounts = await ethereum.request({ method: 'eth_accounts' });
+
+        if (accounts.length > 0) {
+            walletButton.textContent = 'Проверить кошелек';
+            walletButton.addEventListener('click', checkMetaMask);
+        } else {
+            walletButton.textContent = 'Подключить кошелек';
+            walletButton.addEventListener('click', connectMetaMask);
+        }
     } else {
         message.textContent = 'MetaMask is not installed. Please install it to use this feature.';
         alert('MetaMask is not installed. Please install it to use this feature.');
