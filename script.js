@@ -36,8 +36,6 @@ window.addEventListener('load', async () => {
     }
 });
 
-import { getBalance } from "./meta.js"
-
 async function connectMetaMask() {
     try {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
