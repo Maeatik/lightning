@@ -1,4 +1,4 @@
-// import {getBalance} from "./meta.js"
+import {getBalance} from "./meta.js"
 
 window.addEventListener('load', async () => {
     const message = document.getElementById('message');
