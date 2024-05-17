@@ -216,6 +216,19 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
 
         // Рассчитываем стоимость энергии
         const totalCost = energyAmount * pricePerKwh;
+        var ethAmount2 = 0;
+
+        convertRubToEth(totalCost)
+            .then(ethAmount => {
+                if (ethAmount !== null) {
+                    ethAmount2 = ethAmount
+                    console.log(`${rubAmount} RUB составляет приблизительно ${ethAmount} ETH`);
+                } else {
+                    console.log('Не удалось получить курс ETH/RUB.');
+                }
+            });
+        console.log(ethAmount2)
+
         const costInEth = convertRubToEth(totalCost)
         console.log(costInEth.value)
         console.log(costInEth.result)
