@@ -12,10 +12,10 @@ window.addEventListener('load', async () => {
     button3.onclick = showClickerForm;
 
     const sellButton = document.getElementById('sellButton');
-    sellButton.onclick = sellEnergy();
+    sellButton.onclick = sellEnergy;
 
     const earnButton = document.getElementById('earnButton');
-    earnButton.onclick = increaseEnergy();
+    earnButton.onclick = increaseEnergy;
 
 
     if (typeof window.ethereum !== 'undefined') {
@@ -74,9 +74,7 @@ async function showForm() {
 }
 
 async function sellEnergy() {
-    event.preventDefault();
-
-    var amountInput = document.getElementById('amount');
+     var amountInput = document.getElementById('amount');
     var priceInput = document.getElementById('price');
     var amountForSaleElement = document.getElementById('amountForSale');
 
