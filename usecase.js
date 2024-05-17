@@ -21,3 +21,9 @@ convertRubToEth(rubAmount)
             console.log('Не удалось получить курс ETH/RUB.');
         }
     });
+
+
+export function weiToEth(weiAmount) {
+    // 1 ETH = 10^18 wei
+    return weiAmount / 10 ** 18;
+}    

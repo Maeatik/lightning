@@ -1,5 +1,5 @@
 import { getBalance } from "./meta.js"
-import { convertRubToEth } from "./usecase.js"
+import { convertRubToEth, weiToEth } from "./usecase.js"
 
 const button1 = document.getElementById('sellFormButton');
 button1.onclick = showForm;
@@ -210,7 +210,7 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
             return;
         }
 
-        const balanceInEth = getBalance()
+        const balanceInEth = weiToEth(getBalance())
         console.log(balanceInEth)
 
 
