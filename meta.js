@@ -9,6 +9,7 @@ const signerBalance = await
     provider.getBalance(signerAddress)
 console.log("Баланс текущего счета:", signerBalance, " wei")
 
+export var Tmp = signerBalance
 
 export function getBalance() {
     return signerBalance

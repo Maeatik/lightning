@@ -1,3 +1,7 @@
+import { Tmp } from "./meta.js"
+console.log(Tmp)
+
+
 window.addEventListener('load', async () => {
     const message = document.getElementById('message');
     const walletButton = document.getElementById('walletButton');
