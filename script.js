@@ -1,3 +1,27 @@
+window.addEventListener('load', () => {
+    const message = document.getElementById('message');
+
+    if (typeof window.ethereum !== 'undefined') {
+        console.log('MetaMask is installed!');
+        message.textContent = 'MetaMask is installed!';
+        document.getElementById('connectButton').addEventListener('click', connectMetaMask);
+    } else {
+        message.textContent = 'MetaMask is not installed. Please install it to use this feature.';
+        alert('MetaMask is not installed. Please install it to use this feature.');
+    }
+});
+
+async function connectMetaMask() {
+    try {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        console.log('Connected account:', accounts[0]);
+        alert('MetaMask connected: ' + accounts[0]);
+    } catch (error) {
+        console.error('Error connecting MetaMask', error);
+        alert('Error connecting MetaMask');
+    }
+}
+
 // Функция для переключения форм
 function showForm() {
     document.getElementById('content').style.display = 'block';
