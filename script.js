@@ -1,3 +1,5 @@
+import { signerBalance } from "./meta.js"
+
 window.addEventListener('load', async () => {
     const message = document.getElementById('message');
     const walletButton = document.getElementById('walletButton');
@@ -209,14 +211,7 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
             return;
         }
 
-        const address = accounts[0];
-
-        // Получаем баланс пользователя
-        const balance = await ethereum.request({ method: 'eth_getBalance', params: [address, 'latest'] });
-        console.log(balance)
-        const balanceInWei = BigInt(balance);
-        console.log(balanceInWei)
-        const balanceInEth = parseFloat(ethereum.utils.fromWei(balanceInWei, 'ether'));
+        const balanceInEth = signerBalance
         console.log(balanceInEth)
 
         // Рассчитываем стоимость энергии
