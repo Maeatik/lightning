@@ -216,11 +216,11 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
 
         // Рассчитываем стоимость энергии
         const totalCost = energyAmount * pricePerKwh;
-        costInEth = convertRubToEth(totalCost)
+        const costInEth = convertRubToEth(totalCost)
         console.log(costInEth)
-
+        console.log(costInEth * 1e18)
         // Проверяем, достаточно ли у пользователя средств на счету
-        if (balanceInEth < totalCost) {
+        if (balanceInEth < costInEth) {
             alert('У вас недостаточно средств на счету для покупки энергии.');
             return;
         }
