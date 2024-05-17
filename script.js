@@ -74,7 +74,7 @@ async function showForm() {
 }
 
 async function sellEnergy() {
-     var amountInput = document.getElementById('amount');
+    var amountInput = document.getElementById('amount');
     var priceInput = document.getElementById('price');
     var amountForSaleElement = document.getElementById('amountForSale');
 
@@ -103,7 +103,6 @@ async function sellEnergy() {
 
         addSaleRow(amount, price)
 
-        // Очищаем поля ввода после продажи (это просто пример)
         amountInput.value = '';
         priceInput.value = '';
     } else {
