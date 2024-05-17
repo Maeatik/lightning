@@ -6,10 +6,10 @@ window.addEventListener('load', async () => {
     button1.onclick = showForm;
 
     const button2 = document.getElementById('button2');
-    button1.onclick = showOfferList;
+    button2.onclick = showOfferList;
 
     const button3 = document.getElementById('button3');
-    button1.onclick = showClickerForm;
+    button3.onclick = showClickerForm;
 
 
 
