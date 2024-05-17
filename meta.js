@@ -10,6 +10,6 @@ const signerBalance = await
 console.log("Баланс текущего счета:", signerBalance, " wei")
 
 
-async function getBalance() {
+export function getBalance() {
     return signerBalance
 }

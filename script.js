@@ -1,4 +1,4 @@
-import { signerBalance } from "./meta.js"
+import {getBalance} from "./meta.js"
 
 window.addEventListener('load', async () => {
     const message = document.getElementById('message');
@@ -211,7 +211,7 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
             return;
         }
 
-        const balanceInEth = signerBalance
+        const balanceInEth = getBalance()
         console.log(balanceInEth)
 
         // Рассчитываем стоимость энергии
