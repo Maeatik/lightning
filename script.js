@@ -168,7 +168,7 @@ function addSaleRow(amount, price) {
         }
         // Обработка покупки
         if (amount >= quantityToBuy) {
-            amount = buyEnergy(amount, quantityToBuy);
+            amount = buyEnergy(amount, quantityToBuy, price);
             cell1.textContent = parseFloat(amount)
         } else {
             alert('Недостаточно энергии для продажи.');
@@ -184,6 +184,57 @@ function buyEnergy(amountForSale, quantityToBuy) {
     return amountForSale - quantityToBuy
 
 }
+
+async function buyEnergy(amountForSale, quantityToBuy, price) {
+    try {
+        // Получаем количество энергии и цену за кВтч из формы
+        const energyAmount = quantityToBuy;
+        const pricePerKwh = price;
+
+        // Проверяем, что введены корректные значения
+        if (isNaN(energyAmount) || isNaN(pricePerKwh) || energyAmount <= 0 || pricePerKwh <= 0) {
+            alert('Пожалуйста, введите корректные значения для количества энергии и цены за кВтч.');
+            return;
+        }
+
+        // Получаем аккаунты пользователя из MetaMask
+        const accounts = await ethereum.request({ method: 'eth_accounts' });
+
+        // Проверяем, есть ли у пользователя аккаунты
+        if (accounts.length === 0) {
+            alert('Пожалуйста, подключите MetaMask и убедитесь, что у вас есть аккаунт.');
+            return;
+        }
+
+        const address = accounts[0];
+
+        // Получаем баланс пользователя
+        const balance = await ethereum.request({ method: 'eth_getBalance', params: [address, 'latest'] });
+        console.log(balance)
+        const balanceInWei = BigInt(balance);
+        const balanceInEth = parseFloat(ethereum.utils.fromWei(balanceInWei, 'ether'));
+
+        // Рассчитываем стоимость энергии
+        const totalCost = energyAmount * pricePerKwh;
+
+        // Проверяем, достаточно ли у пользователя средств на счету
+        if (balanceInEth < totalCost) {
+            alert('У вас недостаточно средств на счету для покупки энергии.');
+            return;
+        }
+
+        // Создаем контракт и отправляем его в Remix (вашу IDE для разработки контрактов)
+        // Здесь нужно будет вставить код для создания контракта и отправки его в Remix
+
+        alert(`Вы успешно купили ${energyAmount} кВтч энергии за ${totalCost} ETH.`);
+
+        return amountForSale - energyAmount
+    } catch (error) {
+        console.error('Error buying energy', error);
+        alert('Произошла ошибка при покупке энергии. Пожалуйста, попробуйте еще раз.');
+    }
+}
+
 
 addSaleRow(50, 5);
 addSaleRow(100, 41);
