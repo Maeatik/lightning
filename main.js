@@ -1,2 +1,2 @@
-import "./script.js"
 import "./meta.js"
+import "./script.js"
