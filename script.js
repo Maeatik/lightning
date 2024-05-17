@@ -1,25 +1,26 @@
 import { Tmp } from "./meta.js"
 console.log(Tmp)
 
+const button1 = document.getElementById('sellFormButton');
+button1.onclick = showForm;
+
+const button2 = document.getElementById('buyFormButton');
+button2.onclick = showOfferList;
+
+const button3 = document.getElementById('earnFormButton');
+button3.onclick = showClickerForm;
+
+const sellButton = document.getElementById('sellButton');
+sellButton.onclick = sellEnergy;
+
+const earnButton = document.getElementById('earnButton');
+earnButton.onclick = increaseEnergy;
 
 window.addEventListener('load', async () => {
     const message = document.getElementById('message');
     const walletButton = document.getElementById('walletButton');
 
-    const button1 = document.getElementById('sellFormButton');
-    button1.onclick = showForm;
 
-    const button2 = document.getElementById('buyFormButton');
-    button2.onclick = showOfferList;
-
-    const button3 = document.getElementById('earnFormButton');
-    button3.onclick = showClickerForm;
-
-    const sellButton = document.getElementById('sellButton');
-    sellButton.onclick = sellEnergy;
-
-    const earnButton = document.getElementById('earnButton');
-    earnButton.onclick = increaseEnergy;
 
 
     if (typeof window.ethereum !== 'undefined') {
