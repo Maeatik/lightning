@@ -1,4 +1,4 @@
-import { getBalance } from "./meta.js"
+import { getBalance, contractBuyEnergy } from "./meta.js"
 import { convertRubToEth, weiToEth } from "./usecase.js"
 
 const button1 = document.getElementById('sellFormButton');
@@ -231,7 +231,8 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
 
         // Создаем контракт и отправляем его в Remix (вашу IDE для разработки контрактов)
         // Здесь нужно будет вставить код для создания контракта и отправки его в Remix
-
+        await contractBuyEnergy(costInEth)
+        
         alert(`Вы успешно купили ${energyAmount} кВтч энергии за ${totalCost} РУБ(${costInEth} ETH).`);
 
         return amountForSale - energyAmount
