@@ -35,6 +35,8 @@ var getNumberPromise = contract.getNumber();
 
 getNumberPromise.then(function (num) {
     console.log("Вызов бесплатной функции контракта getNumber():" + num);
+}).catch((error) => {
+    console.log(error);
 });
 
 async function paymentExample() {
