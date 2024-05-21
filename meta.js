@@ -3,7 +3,7 @@ import { ethers } from "ethers"
 const test = document.getElementById('testButton');
 test.onclick = paymentExample;
 
-var address = "0xe8907f69eb7066dd6cf8888c09296f8110b1f733"
+var address = "0xCBb229d0507048358d5A51a4FdF09A452964a385"
 
 var abi = [
     {
@@ -31,13 +31,20 @@ export function getBalance() {
 
 var contract = new ethers.Contract(address, abi, signer)
 
-// var getNumberPromise = contract.getNumber();
+var getNumberPromise = contract.getNumber();
 
-// getNumberPromise.then(function (num) {
-//     console.log("Вызов бесплатной функции контракта getNumber():" + num);
-// }).catch((error) => {
-//     console.log(error);
-// });
+getNumberPromise.then(function (num) {
+    console.log("Вызов бесплатной функции контракта getNumber():" + num);
+}).catch((error) => {
+    console.log(error);
+});
+
+var getNumberPromise = contract.getCreator();
+getContactPromise.then(function (str) {
+    console.log("Вызов бесплатной функции контракта getNumber():" + str);
+}).catch((error) => {
+    console.log(error);
+});
 
 async function paymentExample() {
     var sum = 0.0002 * 1e18;
@@ -45,7 +52,7 @@ async function paymentExample() {
     sum = "0x" + sum.toString(16);
     console.log("Сумма в шестнадцатиричном виде: " + sum);
     // Вызовем платежную функцию контракта
-    var getDoPaymentPromise = contract.doPayment2(
+    var getDoPaymentPromise = contract.doPayment(
         { value: sum });
     getDoPaymentPromise
         .then(function (n) {
