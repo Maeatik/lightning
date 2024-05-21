@@ -115,7 +115,7 @@ getNumberPromise.then(function (num) {
     console.log(error);
 });
 
-var getNumberPromise = contract.getCreator();
+var getContactPromise = contract.getCreator();
 getContactPromise.then(function (str) {
     console.log("Вызов бесплатной функции контракта getNumber():" + str);
 }).catch((error) => {
