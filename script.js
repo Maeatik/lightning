@@ -181,7 +181,7 @@ async function addSaleRow(amount, price) {
         if (amount >= quantityToBuy) {
             amount = await buyEnergy(amount, quantityToBuy, price);
             console.log("new amount", amount)
-            
+
             cell1.textContent = parseFloat(amount)
         } else {
             alert('Недостаточно энергии для продажи.');
@@ -230,12 +230,16 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
             alert('У вас недостаточно средств на счету для покупки энергии.');
             return;
         }
-
+        try {
+            await contractBuyEnergy(costInEth)
+            alert(`Вы успешно купили ${energyAmount} кВтч энергии за ${totalCost} РУБ(${costInEth} ETH).`);
+        } catch (error) {
+            console.error('Error buying energy', error);
+            alert('Произошла ошибка при покупке энергии. Пожалуйста, попробуйте еще раз.');
+            return
+        }
         // Создаем контракт и отправляем его в Remix (вашу IDE для разработки контрактов)
         // Здесь нужно будет вставить код для создания контракта и отправки его в Remix
-        await contractBuyEnergy(costInEth)
-
-        alert(`Вы успешно купили ${energyAmount} кВтч энергии за ${totalCost} РУБ(${costInEth} ETH).`);
         
         return amountForSale - energyAmount
     } catch (error) {
