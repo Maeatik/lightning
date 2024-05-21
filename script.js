@@ -170,7 +170,7 @@ async function addSaleRow(amount, price) {
     // Создаем кнопку "Купить" для покупки энергии
     var buyButton = document.createElement('button');
     buyButton.textContent = 'Купить';
-    buyButton.onclick = function () {
+    buyButton.onclick = async function () {
         // Добавьте здесь обработчик события для покупки энергии
         var quantityToBuy = parseFloat(quantityInput.value);
         if (isNaN(quantityToBuy) || quantityToBuy <= 0) {
@@ -179,7 +179,7 @@ async function addSaleRow(amount, price) {
         }
         // Обработка покупки
         if (amount >= quantityToBuy) {
-            amount = buyEnergy(amount, quantityToBuy, price);
+            amount = await buyEnergy(amount, quantityToBuy, price);
             console.log("new amount", amount)
             cell1.textContent = parseFloat(amount)
         } else {
@@ -232,12 +232,7 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
 
         // Создаем контракт и отправляем его в Remix (вашу IDE для разработки контрактов)
         // Здесь нужно будет вставить код для создания контракта и отправки его в Remix
-        const flag = await contractBuyEnergy(costInEth)
-        if (flag == true) {
-            alert(`Вы успешно купили ${energyAmount} кВтч энергии за ${totalCost} РУБ(${costInEth} ETH).`);
-        } else {
-            alert('Произошла ошибка при покупке энергии. Пожалуйста, попробуйте еще раз.');
-        }
+        await contractBuyEnergy(costInEth)
 
         return amountForSale - energyAmount
     } catch (error) {
