@@ -31,13 +31,13 @@ export function getBalance() {
 
 var contract = new ethers.Contract(address, abi, signer)
 
-var getNumberPromise = contract.getNumber();
+// var getNumberPromise = contract.getNumber();
 
-getNumberPromise.then(function (num) {
-    console.log("Вызов бесплатной функции контракта getNumber():" + num);
-}).catch((error) => {
-    console.log(error);
-});
+// getNumberPromise.then(function (num) {
+//     console.log("Вызов бесплатной функции контракта getNumber():" + num);
+// }).catch((error) => {
+//     console.log(error);
+// });
 
 async function paymentExample() {
     var sum = 0.0002 * 1e18;
