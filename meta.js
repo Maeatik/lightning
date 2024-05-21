@@ -152,8 +152,12 @@ export async function contractBuyEnergy(cost) {
     getDoPaymentPromise
         .then(function (n) {
             console.log(n);
+
+            return true
         })
         .catch((error) => {
             console.log(error);
+
+            return false
         });
 }
