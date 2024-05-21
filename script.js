@@ -181,6 +181,7 @@ async function addSaleRow(amount, price) {
         if (amount >= quantityToBuy) {
             amount = await buyEnergy(amount, quantityToBuy, price);
             console.log("new amount", amount)
+            
             cell1.textContent = parseFloat(amount)
         } else {
             alert('Недостаточно энергии для продажи.');
@@ -234,6 +235,8 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
         // Здесь нужно будет вставить код для создания контракта и отправки его в Remix
         await contractBuyEnergy(costInEth)
 
+        alert(`Вы успешно купили ${energyAmount} кВтч энергии за ${totalCost} РУБ(${costInEth} ETH).`);
+        
         return amountForSale - energyAmount
     } catch (error) {
         console.error('Error buying energy', error);
