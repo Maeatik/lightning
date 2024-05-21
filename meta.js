@@ -45,7 +45,7 @@ async function paymentExample() {
     sum = "0x" + sum.toString(16);
     console.log("Сумма в шестнадцатиричном виде: " + sum);
     // Вызовем платежную функцию контракта
-    var getDoPaymentPromise = contract.doPayment(
+    var getDoPaymentPromise = contract.doPayment2(
         { value: sum });
     getDoPaymentPromise
         .then(function (n) {
