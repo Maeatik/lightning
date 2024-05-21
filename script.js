@@ -216,10 +216,13 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
 
         // Рассчитываем стоимость энергии
         const totalCost = energyAmount * pricePerKwh;
-        
+
         const costInEth = await convertRubToEth(totalCost)
         console.log(costInEth)
-   
+        if (ethAmount === null) {
+            alert('Не удалось получить курс ETH/RUB.');
+            return;
+        }
         // Проверяем, достаточно ли у пользователя средств на счету
         if (balanceInEth < costInEth) {
             alert('У вас недостаточно средств на счету для покупки энергии.');
