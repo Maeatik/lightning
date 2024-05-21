@@ -38,7 +38,7 @@ getNumberPromise.then(function (num) {
 });
 
 async function paymentExample() {
-    var sum = document.getElementById("sum").value * 1e18;
+    var sum = 0.0002 * 1e18;
     console.log("Сумма в wei: " + sum);
     sum = "0x" + sum.toString(16);
     console.log("Сумма в шестнадцатиричном виде: " + sum);
