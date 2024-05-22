@@ -3,7 +3,7 @@ import { ethers } from "ethers"
 const test = document.getElementById('testButton');
 test.onclick = paymentExample;
 
-var address = "0xA1e52f5cF537b00Cc14E6Bb63341BbB804B1b1eE"
+var address = "0xaac6fc064068da723f96d9efa0c94bb2ccf2c0fc"
 
 var abi = [
     {
