@@ -199,6 +199,26 @@ export async function contractBuyEnergy(cost) {
         });
 }
 
+// export async function contractSellEnergy(cost) {
+//     var contract = new ethers.Contract(address, abi, signer)
+//     console.log("Сумма за покупку энергии: " + sum)
+//     var sum = cost * 1e18;
+//     console.log("Сумма в wei: " + sum);
+//     sum = "0x" + sum.toString(16);
+//     console.log("Сумма в шестнадцатиричном виде: " + sum);
+//     // Вызовем платежную функцию контракта
+//     var getDoPaymentPromise = contract.paySeller(signerBalance,
+//         { value: sum });
+//     await getDoPaymentPromise
+//         .then(function (n) {
+//             console.log(n);
+//         })
+//         .catch((error) => {
+//             console.log(error);
+//             throw error
+//         });
+// }
+
 export async function contractSellEnergy(cost) {
     var contract = new ethers.Contract(address, abi, signer)
     console.log("Сумма за покупку энергии: " + sum)
@@ -207,16 +227,14 @@ export async function contractSellEnergy(cost) {
     sum = "0x" + sum.toString(16);
     console.log("Сумма в шестнадцатиричном виде: " + sum);
     // Вызовем платежную функцию контракта
-    var getDoPaymentPromise = contract.paySeller(signerBalance,
-        { value: sum });
-    await getDoPaymentPromise
-        .then(function (n) {
-            console.log(n);
-        })
-        .catch((error) => {
-            console.log(error);
-            throw error
-        });
+    try {
+        const tx = await contract.paySeller(toAddress, { value: sum });
+        console.log("Транзакция отправлена:", tx);
+        const receipt = await tx.wait();
+        console.log("Транзакция подтверждена:", receipt);
+    } catch (error) {
+        console.error("Ошибка при отправке транзакции:", error);
+    }
 }
 
 // // Функция для продажи энергии
