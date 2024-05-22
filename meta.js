@@ -149,7 +149,7 @@ export async function contractBuyEnergy(cost) {
     // Вызовем платежную функцию контракта
     var getDoPaymentPromise = contract.doPayment(
         { value: sum });
-    getDoPaymentPromise
+    await getDoPaymentPromise
         .then(function (n) {
             console.log(n);
         })
