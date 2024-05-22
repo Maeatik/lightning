@@ -3,7 +3,7 @@ import { ethers } from "ethers"
 const test = document.getElementById('testButton');
 test.onclick = paymentExample;
 
-var address = "0xaac6fc064068da723f96d9efa0c94bb2ccf2c0fc"
+var address = "0x0c315cdff6c6db49223967b62dfdc75630cb04a3"
 
 var abi = [
     {
@@ -16,6 +16,24 @@ var abi = [
     {
         "inputs": [],
         "name": "kill",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address payable",
+                "name": "seller",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "paySeller",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -42,6 +60,25 @@ var abi = [
             }
         ],
         "name": "PaymentEvent",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "seller",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "SellerPayment",
         "type": "event"
     },
     {
@@ -158,3 +195,39 @@ export async function contractBuyEnergy(cost) {
             throw error
         });
 }
+
+export async function contractSellEnergy(cost) {
+    var contract = new ethers.Contract(address, abi, signer)
+    console.log("Сумма за покупку энергии: " + sum)
+    var sum = cost * 1e18;
+    console.log("Сумма в wei: " + sum);
+    sum = "0x" + sum.toString(16);
+    console.log("Сумма в шестнадцатиричном виде: " + sum);
+    // Вызовем платежную функцию контракта
+    var getDoPaymentPromise = contract.paySeller(
+        { value: sum });
+    await getDoPaymentPromise
+        .then(function (n) {
+            console.log(n);
+        })
+        .catch((error) => {
+            console.log(error);
+            throw error
+        });
+}
+
+// // Функция для продажи энергии
+// export async function contractSellEnergy(sellerAddress, cost) {
+//     var contract = new ethers.Contract(address, abi, signer);
+//     var sum = ethers.utils.parseEther(cost.toString());
+//     console.log("Сумма за продажу энергии в wei: " + sum.toString());
+
+//     try {
+//         const transaction = await contract.paySeller(sellerAddress, sum);
+//         const receipt = await transaction.wait();
+//         console.log("Транзакция успешна:", receipt);
+//     } catch (error) {
+//         console.error("Ошибка при продаже энергии:", error);
+//         throw error;
+//     }
+// }

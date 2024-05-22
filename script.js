@@ -244,9 +244,6 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
             await contractBuyEnergy(costInEth)
             alert(`Вы успешно купили ${energyAmount} кВтч энергии за ${totalCost} РУБ(${costInEth} ETH).`);
         } catch (error) {
-            console.error('Error buying energy', error);
-            alert('Произошла ошибка при покупке энергии. Пожалуйста, попробуйте еще раз.');
-
             throw error;
         }
         // Создаем контракт и отправляем его в Remix (вашу IDE для разработки контрактов)
