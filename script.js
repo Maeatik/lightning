@@ -1,4 +1,4 @@
-import { getBalance, contractBuyEnergy } from "./meta.js"
+import { getBalance, contractBuyEnergy, contractSellEnergy } from "./meta.js"
 import { convertRubToEth, weiToEth } from "./usecase.js"
 
 const button1 = document.getElementById('sellFormButton');
@@ -99,13 +99,17 @@ async function sellEnergy() {
         var newAmountForSale = currentAmountForSale - amount;
         amountForSaleElement.textContent = newAmountForSale.toFixed(2); // Округляем до двух знаков после запятой
 
-        // Выводим информацию о продаже в консоль (для демонстрации)
-        console.log("Продано " + amount + " кВтч по цене " + price + " за кВтч. Всего получено: " + totalAmount.toFixed(2) + " руб.");
+        try {
+            await contractSellEnergy(amount * price)
+            console.log("Продано " + amount + " кВтч по цене " + price + " за кВтч. Всего получено: " + totalAmount.toFixed(2) + " руб.");
 
-        addSaleRow(amount, price)
+            addSaleRow(amount, price)
 
-        amountInput.value = '';
-        priceInput.value = '';
+            amountInput.value = '';
+            priceInput.value = '';
+        } catch (error) {
+            throw error;
+        }
     } else {
         alert("Недостаточно энергии для продажи.");
     }

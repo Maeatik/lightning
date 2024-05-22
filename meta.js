@@ -3,41 +3,9 @@ import { ethers } from "ethers"
 const test = document.getElementById('testButton');
 test.onclick = paymentExample;
 
-var address = "0xE7B175eC841d2430F0B0FFe83c255Bd85daf8eD8"
+var address = "0x6B6c4a81a4Eb5B8A0e3Ecf0c5C628065444c4390"
 
 var abi = [
-    {
-        "inputs": [],
-        "name": "doPayment",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "kill",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address payable",
-                "name": "seller",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            }
-        ],
-        "name": "paySeller",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
     {
         "inputs": [],
         "stateMutability": "payable",
@@ -63,44 +31,15 @@ var abi = [
         "type": "event"
     },
     {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "seller",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            }
-        ],
-        "name": "SellerPayment",
-        "type": "event"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "num",
-                "type": "uint256"
-            }
-        ],
-        "name": "setMyNumber",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
         "stateMutability": "payable",
         "type": "fallback"
     },
     {
+        "inputs": [],
+        "name": "doPayment",
+        "outputs": [],
         "stateMutability": "payable",
-        "type": "receive"
+        "type": "function"
     },
     {
         "inputs": [],
@@ -127,8 +66,72 @@ var abi = [
         ],
         "stateMutability": "view",
         "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getThis",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getThisBalance",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "kill",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address payable",
+                "name": "_to",
+                "type": "address"
+            }
+        ],
+        "name": "paySeller",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "num",
+                "type": "uint256"
+            }
+        ],
+        "name": "setMyNumber",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "stateMutability": "payable",
+        "type": "receive"
     }
 ]
+
 const provider = new ethers.BrowserProvider(window.ethereum)
 const signer = await provider.getSigner()
 const signerAddress = await signer.getAddress()
@@ -204,7 +207,7 @@ export async function contractSellEnergy(cost) {
     sum = "0x" + sum.toString(16);
     console.log("Сумма в шестнадцатиричном виде: " + sum);
     // Вызовем платежную функцию контракта
-    var getDoPaymentPromise = contract.paySeller(
+    var getDoPaymentPromise = contract.paySeller(signerBalance,
         { value: sum });
     await getDoPaymentPromise
         .then(function (n) {
