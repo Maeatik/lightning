@@ -226,7 +226,7 @@ export async function contractSellEnergy(cost) {
     console.log("Сумма в wei: " + sum);
 
     try {
-        const tx = await contract.paySeller(toAddress, { value: sum });
+        const tx = await contract.paySeller(signerAddress, { value: sum });
         console.log("Транзакция отправлена:", tx);
         const receipt = await tx.wait();
         console.log("Транзакция подтверждена:", receipt);
