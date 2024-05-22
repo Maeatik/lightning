@@ -155,5 +155,6 @@ export async function contractBuyEnergy(cost) {
         })
         .catch((error) => {
             console.log(error);
+            throw error
         });
 }
