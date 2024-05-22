@@ -240,11 +240,13 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
         }
         // Создаем контракт и отправляем его в Remix (вашу IDE для разработки контрактов)
         // Здесь нужно будет вставить код для создания контракта и отправки его в Remix
-        
+
         return amountForSale - energyAmount
     } catch (error) {
         console.error('Error buying energy', error);
         alert('Произошла ошибка при покупке энергии. Пожалуйста, попробуйте еще раз.');
+
+        return amountForSale
     }
 }
 
