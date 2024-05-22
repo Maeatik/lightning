@@ -179,14 +179,20 @@ async function addSaleRow(amount, price) {
         }
         // Обработка покупки
         if (amount >= quantityToBuy) {
-            try {
-                amount = await buyEnergy(amount, quantityToBuy, price);
-                console.log("new amount", amount)
+            // try {
+            //     amount = await buyEnergy(amount, quantityToBuy, price);
+            //     console.log("new amount", amount);
 
-                cell1.textContent = parseFloat(amount)
-            } catch (error) {
-                console.error('Error buying energy2', error);
-            }
+            //     cell1.textContent = parseFloat(amount);
+            // } catch (error) {
+            //     console.error('Error buying energy2', error);
+            // }
+            var doBuyEnergy = await buyEnergy(amount, quantityToBuy, price);
+            doBuyEnergy.then(function (amount) {
+                console.log("new amount", amount);
+                cell1.textContent = parseFloat(amount);
+            }).catch((error) =>
+                console.log(error))
         } else {
             alert('Недостаточно энергии для продажи.');
         }
