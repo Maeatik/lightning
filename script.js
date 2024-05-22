@@ -89,7 +89,7 @@ async function sellEnergy() {
     }
 
     // Вычисляем общую сумму, полученную от продажи энергии
-    var totalAmount = amount * price;
+    var totalCost = amount * price;
 
     // Получаем текущее количество энергии для продажи
     var currentAmountForSale = parseFloat(amountForSaleElement.textContent);
@@ -99,9 +99,16 @@ async function sellEnergy() {
         var newAmountForSale = currentAmountForSale - amount;
         amountForSaleElement.textContent = newAmountForSale.toFixed(2); // Округляем до двух знаков после запятой
 
+        const costInEth = await convertRubToEth(totalCost)
+        console.log(costInEth)
+        if (costInEth === null) {
+            alert('Не удалось получить курс ETH/RUB.');
+            return;
+        }
+
         try {
-            await contractSellEnergy(amount * price)
-            console.log("Продано " + amount + " кВтч по цене " + price + " за кВтч. Всего получено: " + totalAmount.toFixed(2) + " руб.");
+            await contractSellEnergy(costInEth)
+            console.log("Продано " + amount + " кВтч по цене " + price + " за кВтч. Всего получено: " + totalCost.toFixed(2) + " руб.");
 
             addSaleRow(amount, price)
 
