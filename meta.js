@@ -147,7 +147,7 @@ export async function contractBuyEnergy(cost) {
     sum = "0x" + sum.toString(16);
     console.log("Сумма в шестнадцатиричном виде: " + sum);
     // Вызовем платежную функцию контракта
-    var getDoPaymentPromise = contract.doPayment(
+    var getDoPaymentPromise = await contract.doPayment(
         { value: sum });
     getDoPaymentPromise
         .then(function (n) {
