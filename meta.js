@@ -3,9 +3,41 @@ import { ethers } from "ethers"
 const test = document.getElementById('testButton');
 test.onclick = paymentExample;
 
-var address = "0x01D10D73EBce4e7afC3A53346115034B094F9e92"
+var address = "0xD299658Dcb790a59FCc8641879C8cdf757C8AD3c"
 
 var abi = [
+    {
+        "inputs": [],
+        "name": "doPayment",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "kill",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address payable",
+                "name": "_to",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "paySeller",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
     {
         "inputs": [],
         "stateMutability": "payable",
@@ -31,15 +63,25 @@ var abi = [
         "type": "event"
     },
     {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "num",
+                "type": "uint256"
+            }
+        ],
+        "name": "setMyNumber",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
         "stateMutability": "payable",
         "type": "fallback"
     },
     {
-        "inputs": [],
-        "name": "doPayment",
-        "outputs": [],
         "stateMutability": "payable",
-        "type": "function"
+        "type": "receive"
     },
     {
         "inputs": [],
@@ -92,43 +134,6 @@ var abi = [
         ],
         "stateMutability": "view",
         "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "kill",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address payable",
-                "name": "_to",
-                "type": "address"
-            }
-        ],
-        "name": "paySeller",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "num",
-                "type": "uint256"
-            }
-        ],
-        "name": "setMyNumber",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "stateMutability": "payable",
-        "type": "receive"
     }
 ]
 
@@ -227,7 +232,7 @@ export async function contractSellEnergy(cost) {
     sum = "0x" + sum.toString(16);
     console.log("Сумма в шестнадцатиричном виде: " + sum);
     try {
-        const tx = await contract.paySeller(signerAddress, { value: sum });
+        const tx = await contract.paySeller(signerAddress, sum);
         console.log("Транзакция отправлена:", tx);
         const receipt = await tx.wait();
         console.log("Транзакция подтверждена:", receipt);
