@@ -3,7 +3,7 @@ import { ethers } from "ethers"
 const test = document.getElementById('testButton');
 test.onclick = paymentExample;
 
-var address = "0x6B6c4a81a4Eb5B8A0e3Ecf0c5C628065444c4390"
+var address = "0x01D10D73EBce4e7afC3A53346115034B094F9e92"
 
 var abi = [
     {
@@ -224,7 +224,8 @@ export async function contractSellEnergy(cost) {
     console.log("Сумма за покупку энергии: " + sum)
     var sum = cost * 1e18;
     console.log("Сумма в wei: " + sum);
-
+    sum = "0x" + sum.toString(16);
+    console.log("Сумма в шестнадцатиричном виде: " + sum);
     try {
         const tx = await contract.paySeller(signerAddress, { value: sum });
         console.log("Транзакция отправлена:", tx);
