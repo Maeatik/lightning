@@ -115,6 +115,7 @@ async function sellEnergy() {
             amountInput.value = '';
             priceInput.value = '';
         } catch (error) {
+            alert('Ошибка при продаже. Попробуйте еще раз');
             throw error;
         }
     } else {

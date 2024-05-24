@@ -258,5 +258,6 @@ export async function contractSellEnergy(cost, amount) {
         console.log("Транзакция подтверждена:", receipt);
     } catch (error) {
         console.error("Ошибка при отправке транзакции:", error);
+        throw error;
     }
 }
