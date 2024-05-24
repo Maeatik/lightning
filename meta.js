@@ -1,6 +1,6 @@
 import { ethers } from "ethers"
 
-var address = "0xB661f9acBde155eFB41fE3Edb4fa6F4cd4856704"
+var address = "0xa4Dc3d3ed97b5B12e902b7C376caDDA53b69Eed2"
 
 var abi = [
     {
@@ -251,6 +251,7 @@ export async function contractSellEnergy(cost, amount) {
     sum = "0x" + sum.toString(16);
     console.log("Сумма в шестнадцатиричном виде: " + sum);
     try {
+        console.log(sum)
         const tx = await contract.paySeller(signerAddress, "Продажа", amount, sum);
         console.log("Транзакция отправлена:", tx);
         const receipt = await tx.wait();
