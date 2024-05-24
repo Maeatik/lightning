@@ -246,9 +246,9 @@ export async function contractBuyEnergy(cost, amount) {
 export async function contractSellEnergy(cost, amount) {
     var contract = new ethers.Contract(address, abi, signer)
     console.log("Сумма за покупку энергии: " + sum)
-    var sum = cost * 1e18;
+    var sum = Math.floor(cost * 1e18);
     console.log("Сумма в wei: " + sum);
-    sum = hex(int(wei));
+    sum = "0x" + sum.toString(16);
     console.log("Сумма в шестнадцатиричном виде: " + sum);
     try {
         console.log(sum)

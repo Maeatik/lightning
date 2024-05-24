@@ -95,9 +95,6 @@ async function sellEnergy() {
     var currentAmountForSale = parseFloat(amountForSaleElement.textContent);
 
     if (currentAmountForSale >= amount) {
-        // Уменьшаем количество энергии для продажи на проданное количество
-        var newAmountForSale = currentAmountForSale - amount;
-        amountForSaleElement.textContent = newAmountForSale.toFixed(2); // Округляем до двух знаков после запятой
 
         const costInEth = await convertRubToEth(totalCost)
         console.log(costInEth)
@@ -112,6 +109,10 @@ async function sellEnergy() {
             alert('Ошибка при продаже. Попробуйте еще раз');
             throw error;
         }
+
+        // Уменьшаем количество энергии для продажи на проданное количество
+        var newAmountForSale = currentAmountForSale - amount;
+        amountForSaleElement.textContent = newAmountForSale.toFixed(2); // Округляем до двух знаков после запятой
 
         console.log("Продано " + amount + " кВтч по цене " + price + " за кВтч. Всего получено: " + totalCost.toFixed(2) + " руб.");
 
