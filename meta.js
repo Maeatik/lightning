@@ -248,7 +248,7 @@ export async function contractSellEnergy(cost, amount) {
     console.log("Сумма за покупку энергии: " + sum)
     var sum = cost * 1e18;
     console.log("Сумма в wei: " + sum);
-    sum = "0x" + sum.toString(16);
+    sum = hex(int(wei));
     console.log("Сумма в шестнадцатиричном виде: " + sum);
     try {
         console.log(sum)

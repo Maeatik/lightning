@@ -108,16 +108,17 @@ async function sellEnergy() {
 
         try {
             await contractSellEnergy(costInEth, amount)
-            console.log("Продано " + amount + " кВтч по цене " + price + " за кВтч. Всего получено: " + totalCost.toFixed(2) + " руб.");
-
-            addSaleRow(amount, price)
-
-            amountInput.value = '';
-            priceInput.value = '';
         } catch (error) {
             alert('Ошибка при продаже. Попробуйте еще раз');
             throw error;
         }
+
+        console.log("Продано " + amount + " кВтч по цене " + price + " за кВтч. Всего получено: " + totalCost.toFixed(2) + " руб.");
+
+        addSaleRow(amount, price)
+
+        amountInput.value = '';
+        priceInput.value = '';
     } else {
         alert("Недостаточно энергии для продажи.");
     }
