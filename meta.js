@@ -1,8 +1,5 @@
 import { ethers } from "ethers"
 
-const test = document.getElementById('testButton');
-test.onclick = paymentExample;
-
 var address = "0xB661f9acBde155eFB41fE3Edb4fa6F4cd4856704"
 
 var abi = [
