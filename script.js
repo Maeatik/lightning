@@ -107,7 +107,7 @@ async function sellEnergy() {
         }
 
         try {
-            await contractSellEnergy(costInEth)
+            await contractSellEnergy(costInEth, amount)
             console.log("Продано " + amount + " кВтч по цене " + price + " за кВтч. Всего получено: " + totalCost.toFixed(2) + " руб.");
 
             addSaleRow(amount, price)
@@ -252,7 +252,7 @@ async function buyEnergy(amountForSale, quantityToBuy, price) {
             return;
         }
         try {
-            await contractBuyEnergy(costInEth)
+            await contractBuyEnergy(costInEth, energyAmount)
             alert(`Вы успешно купили ${energyAmount} кВтч энергии за ${totalCost} РУБ(${costInEth} ETH).`);
         } catch (error) {
             throw error;
