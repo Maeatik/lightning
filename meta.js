@@ -1,6 +1,6 @@
 import { ethers } from "ethers"
 
-var address = "0x97e4278bb25EEC039671e6A9415964e1231905EF"
+var address = "0x697aA8c2E22bd0e8F09d35A5b1d6f8dCafE5C2Cc"
 
 var abi = [
     {
